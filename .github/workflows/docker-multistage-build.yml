@@ -86,7 +86,7 @@ jobs:
         if: ${{ inputs.has_refs }}
 
       - name: "[SETUP] Install QEMU environment"
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
         id: qemu
         with:
           image: tonistiigi/binfmt:latest
@@ -170,7 +170,7 @@ jobs:
             make tag VERSION="${{ matrix.VERSION }}" STAGE=${{ inputs.stage }} FLAVOUR=${{ matrix.FLAVOUR }} TAG=${{ steps.tag.outputs.docker-tag }}
 
       - name: Docker login
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.dockerhub_username }}
           password: ${{ secrets.dockerhub_password }}
