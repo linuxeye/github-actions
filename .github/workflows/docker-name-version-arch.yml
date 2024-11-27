@@ -22,10 +22,6 @@ on:
         description: 'The ref build matrix as JSON string (list of git refs to build/deploy).'
         required: false
         type: string
-      can_registry:
-        description: 'Determines whether this workflow will also registry (login and push).'
-        required: false
-        type: boolean
     ###
     ### Secrets
     ###
@@ -268,23 +264,3 @@ jobs:
         with:
           command: |
             make manifest-push NAME=${{ matrix.name }} VERSION="${{ matrix.version }}" TAG=${{ steps.tag.outputs.docker-tag }}
-
-      # ------------------------------------------------------------
-      # REGISTRY
-      # ------------------------------------------------------------
-      - name: "[REGISTRY] Login"
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ secrets.REGISTRY_URL }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-        if: inputs.can_registry
-
-      - name: "[REGISTRY] Push"
-        uses: linuxeye/shell-command-retry-action@master
-        with:
-          command: |
-            docker pull bypanel/${{ matrix.name }}:${{ steps.tag.outputs.docker-tag }}
-            docker tag bypanel/${{ matrix.name }}:${{ steps.tag.outputs.docker-tag }} ${{ secrets.REGISTRY_URL }}/bypanel/${{ matrix.name }}:${{ steps.tag.outputs.docker-tag }}
-            docker push ${{ secrets.REGISTRY_URL }}/bypanel/${{ matrix.name }}:${{ steps.tag.outputs.docker-tag }}
-        if: inputs.can_registry
