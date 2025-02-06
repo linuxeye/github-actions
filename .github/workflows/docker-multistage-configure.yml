@@ -85,7 +85,7 @@ jobs:
   configure:
     name: Configure
     if: ${{ inputs.enabled }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     ###
     ### Outputs

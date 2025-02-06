@@ -46,7 +46,7 @@ jobs:
   # -----------------------------------------------------------------------------------------------
   deploy:
     name: ${{ matrix.NAME }}-${{ matrix.VERSION }}-${{ inputs.stage }} ${{ matrix.REFS }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
