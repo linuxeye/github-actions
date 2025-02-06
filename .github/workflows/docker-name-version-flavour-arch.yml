@@ -141,7 +141,7 @@ jobs:
       - name: "[SETUP] Setup QEMU environment"
         uses: docker/setup-qemu-action@v3
         with:
-          image: tonistiigi/binfmt:qemu-v9.2.0
+          image: tonistiigi/binfmt:master
           platforms: all
 
       - name: "[SETUP] Determine Docker tag"
