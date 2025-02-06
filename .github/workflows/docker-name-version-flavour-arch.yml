@@ -40,7 +40,7 @@ jobs:
   # -----------------------------------------------------------------------------------------------
   configure:
     name: Configure
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     outputs:
       can_login: ${{ steps.set-login.outputs.can_login }}
       has_refs: ${{ steps.set-matrix.outputs.has_refs }}
@@ -115,7 +115,7 @@ jobs:
   build:
     needs: [configure]
     name: Build ${{ matrix.name }}-${{ matrix.version }} (${{ matrix.flavour }}) (${{ matrix.arch }}) ${{ matrix.refs }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -204,7 +204,7 @@ jobs:
   deploy:
     needs: [configure, build]
     name: Deploy ${{ matrix.name }}-${{ matrix.version }} (${{ matrix.flavour }}) ${{ matrix.refs }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:

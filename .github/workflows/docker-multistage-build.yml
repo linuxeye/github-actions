@@ -62,7 +62,7 @@ jobs:
   # -----------------------------------------------------------------------------------------------
   build:
     name: ${{ matrix.NAME }}-${{ matrix.VERSION }}-${{ inputs.stage }} (${{ matrix.ARCH }}) ${{ matrix.REFS }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
