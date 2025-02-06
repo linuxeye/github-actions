@@ -56,7 +56,7 @@ jobs:
       - name: "[SETUP] Setup QEMU environment"
         uses: docker/setup-qemu-action@v3
         with:
-          image: tonistiigi/binfmt:qemu-v8.1.5
+          image: tonistiigi/binfmt:qemu-v9.2.0
           platforms: all
 
       - name: "[SETUP] Set artifact names"
