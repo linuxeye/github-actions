@@ -89,8 +89,8 @@ jobs:
         uses: docker/setup-qemu-action@v3
         id: qemu
         with:
-          image: tonistiigi/binfmt
-          platforms: all
+          image: tonistiigi/binfmt:qemu-v8.1.5
+          platforms: linux/amd64,linux/arm64
 
       - name: "[SETUP] Set artifact names"
         id: set-artifact-name
