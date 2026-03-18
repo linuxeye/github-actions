@@ -41,22 +41,22 @@ jobs:
       # Setup repository
       # ------------------------------------------------------------
       - name: "[SETUP] Checkout repository (current)"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
         if: ${{ !inputs.has_refs }}
 
       - name: "[SETUP] Checkout repository (ref: ${{ matrix.REFS }})"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: ${{ matrix.REFS }}
         if: ${{ inputs.has_refs }}
 
       - name: "[SETUP] Setup QEMU environment"
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
-          image: tonistiigi/binfmt:qemu-v8.1.5
+          #image: tonistiigi/binfmt:qemu-v8.1.5
           platforms: linux/amd64,linux/arm64
 
       - name: "[SETUP] Set artifact names"
